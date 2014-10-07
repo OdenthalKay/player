@@ -1,3 +1,26 @@
-.slideshow-example h1 {
-  background-color: purple
+
+
+.slide-container {
+    white-space: nowrap; /* actionbar und image immer nebeneinander */
+    width: 100%;
+}
+
+.slide {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.slide-image {
+	display: inline-block;
+	width: 92%;
+	height: auto;
+}
+
+.slide-action-bar {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.slide-action-bar > button {
+	display: block; /* alle buttons untereinander */
 }

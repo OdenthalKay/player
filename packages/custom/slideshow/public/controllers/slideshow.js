@@ -6,5 +6,32 @@ angular.module('mean.slideshow').controller('SlideshowController', ['$scope', 'G
     $scope.package = {
       name: 'slideshow'
     };
+
+    $scope.selectedSlide = {};
+    $scope.slides = [
+    	{
+    		imageData: 'http://lorempixel.com/800/600/sports/1/'
+
+    	},
+    	{
+    		imageData: 'http://lorempixel.com/800/600/sports/2/'
+    	}
+    ];
+
+    $scope.previousSlide = function() {
+    	
+    };
+
+    $scope.nextSlide = function() {
+
+    };
+
+    $scope.fullscreen = function() {
+
+    };
+
+
+
+
   }
 ]);
