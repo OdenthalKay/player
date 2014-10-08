@@ -1,25 +1,33 @@
-  <div class="slide-container" data-ng-controller="SlideshowController">
+  
+<div data-ng-controller="SlideshowController">
 
 
-      <div class="slide" ng-repeat="slide in slides track by $index" id="{{$index}}">
+	<div id="slides">
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" ng-click="fullscreen()" id="slide0"/>
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+	</div>
 
-          <div class="slide-action-bar">
-            <button type="button" class="btn btn-default btn-sm" ng-click="fullscreen($index)">
-              <span class="glyphicon glyphicon-fullscreen"></span>
-            </button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="openDetailDialog($index)">
-              <span class="glyphicon glyphicon-list-alt"></span>
-            </button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="openAudioDialog($index)">
-              <span class="glyphicon glyphicon-volume-up"></span>
-            </button>
-          </div>
-          <div class="slide-image">
-            <img class="slide-image" src="{{slide.imageData}}" />
-          </div>
-        
-      </div>
-    
-  </div>
+	<div ng-hide="!isFullscreen" class="fullscreen-container" id="fullscreen-container">
+		<button ng-click="exitFullscreen()">Vollbild</button>
+		<button>Detail</button>
+		<button>Audio</button>
+	</div>
+
+
+
+</div>
+
+
+
+
+
+
 
 
