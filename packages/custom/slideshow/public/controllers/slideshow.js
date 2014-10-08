@@ -8,37 +8,50 @@ angular.module('mean.slideshow').controller('SlideshowController', ['$scope', 'G
     };
 
 
+    $scope.fullscreenContainerID = '#fullscreen-container';
     $scope.isFullscreen = false;
+    $scope.fullscreenSlideID = 0; 
     $scope.selectedSlide = {};
     $scope.slides = [
-    	{
-    		imageData: 'http://lorempixel.com/800/600/sports/1/'
+    {
+      imageData: 'http://lorempixel.com/800/600/sports/1/'
 
-    	},
-    	{
-    		imageData: 'http://lorempixel.com/800/600/sports/2/'
-    	}
+    },
+    {
+      imageData: 'http://lorempixel.com/800/600/sports/2/'
+    }
     ];
 
     $scope.previousSlide = function() {
-    	
+      if ($scope.fullscreenSlideID === 0) {
+        return;
+      }
+
+      $scope.fullscreenSlideID = $scope.fullscreenSlideID-1;
+      $scope.changeFullscreenImage();
     };
 
     $scope.nextSlide = function() {
+      if ($scope.fullscreenSlideID === $scope.slides.length-1) {
+        return;
+      }
 
+      $scope.fullscreenSlideID = $scope.fullscreenSlideID+1;
+      $scope.changeFullscreenImage();
     };
 
+    $scope.changeFullscreenImage = function() {
+      var element = angular.element($scope.fullscreenContainerID);
+      var image = $scope.slides[$scope.fullscreenSlideID].imageData;
+      element.css({'background-image': 'url('+image+')'});
+    };
 
-
-
-  $scope.fullscreen = function() {
-    // Slide wechseln und Container sichtbar machen
-    var element = angular.element('#fullscreen-container');
-    element.css('background-image', 'url(http://lorempixel.com/800/600/sports/2/)');
-    //element.attr('class','fullscreen-container');
+    $scope.fullscreen = function(id) {
+      $scope.fullscreenSlideID = id;
+      $scope.changeFullscreenImage();
 
     // vollbildmodus aktivieren
-    var domElement = element[0];
+    var domElement = angular.element($scope.fullscreenContainerID)[0];
     if (domElement.requestFullscreen) {
       domElement.requestFullscreen();
       return;
@@ -54,11 +67,10 @@ angular.module('mean.slideshow').controller('SlideshowController', ['$scope', 'G
     }
 
     alert('Die fullScreen API wird von diesem Browser nicht unterstützt!');
-};
+  };
 
 /*
 * Vollbildmodus explizit beenden
-* 
 */
 $scope.exitFullscreen = function() {
   if(document.exitFullscreen) {
@@ -77,21 +89,12 @@ $scope.exitFullscreen = function() {
 * Seine Aufgabe ist es, den Vollbild-Container zu verstecken.
 */
 $scope.fullscreenChangeListener = function () {
-    $scope.isFullscreen = !$scope.isFullscreen;
-    
+  $scope.isFullscreen = !$scope.isFullscreen;
+  
     // muss hier stehen, damit der scope rechtzeitig geupdated wird
     $scope.$apply();
-};
-angular.element(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', $scope.fullscreenChangeListener);
-
-
-
-$scope.next= function() {
-
-
-angular.element('#fullscreen-container').find('img').attr('src', 'http://lorempixel.com/800/600/sports/1/');
-
-
   };
+  angular.element(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', $scope.fullscreenChangeListener);
+
 }
 ]);

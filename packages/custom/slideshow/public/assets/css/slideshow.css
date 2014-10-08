@@ -6,6 +6,7 @@
   background: no-repeat; 
   background-size: contain;
   background-position: center;
+  position: relative;
 }
 
 .slide {
@@ -19,11 +20,30 @@
 
 .slides {
   width: 100%;
-
 }
 
-.invisible {
-  display: none;
+.fullscreen-container-footer {
+  position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.fullscreen-container-footer > button{
+  margin: 10px;
+  background-color: #CCCCCC;
+}
+
+.clickable-fullscreen-overlay-left {
+  height: 100%;
+  width: 15%;
+}
+
+.clickable-fullscreen-overlay-right {
+  position: absolute;
+  height: 100%;
+  left: 85%;
+  width: 15%;
+  top: 0;
 }
 
 

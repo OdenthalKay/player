@@ -1,27 +1,33 @@
   
 <div data-ng-controller="SlideshowController">
 
-
+	<!-- Alle Slides hintereinander weg als Bildelement auflisten -->
 	<div id="slides">
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" ng-click="fullscreen()" id="slide0"/>
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
-		<img class="slide" src="http://lorempixel.com/600/400/sports/1/" />
+		<img ng-repeat="slide in slides track by $index" class="slide" src="{{slide.imageData}}" id="{{$index}}" ng-click="fullscreen($index)"/>
 	</div>
 
+	<!-- In diesem Container wird jeweils eins der Bilder im Vollbildmodus angezeigt -->
 	<div ng-hide="!isFullscreen" class="fullscreen-container" id="fullscreen-container">
-		<button ng-click="exitFullscreen()">Vollbild</button>
-		<button>Detail</button>
-		<button>Audio</button>
+		
+
+		<!-- per touch/klick auf linke/rechte seite des bildes zwischen slides navigieren -->
+		<div class="clickable-fullscreen-overlay-left" id="clickable-fullscreen-overlay-left" ng-click="previousSlide()">
+		</div>
+		<div class="clickable-fullscreen-overlay-right" id="clickable-fullscreen-overlay-right" ng-click="nextSlide()">
+		</div>
+
+		<div class="fullscreen-container-footer">
+			<button type="button" class="btn btn-default btn-lg" ng-click="exitFullscreen()">
+				<span class="glyphicon glyphicon-fullscreen"></span>
+			</button>
+			<button type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-volume-up"></span>
+			</button>
+			<button type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-list-alt"></span>
+			</button>
+		</div>
 	</div>
-
-
-
 </div>
 
 
